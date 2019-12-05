@@ -16,7 +16,7 @@ This repo contains the answers from the [SQLzoo web site](https://sqlzoo.net/)
  - [7 More JOIN operations](https://github.com/cma4c/sqlzoo-answer/tree/master/7-More-JOIN-operations)
  - [8 Using Null](https://github.com/cma4c/sqlzoo-answer/tree/master/8-Using-Null)
  - [8+ Numeric Examples](https://github.com/cma4c/sqlzoo-answer/tree/master/8+-Numeric-Examples)
- - [9- Window function](https://github.com/cma4c/sqlzoo-answer/tree/master/9-Window-function)
+ - [9- Window function](https://github.com/cma4c/sqlzoo-answer/tree/master/9--Window-function)
  - [9 Self join](https://github.com/cma4c/sqlzoo-answer/tree/master/9-Self-join)
 
 ## Resolved by Cmauricio Parra
