@@ -36,4 +36,46 @@ GROUP BY yr, party, votes
 ORDER BY party,yr
 ```
 
-4. 
+4. Edinburgh constituencies are numbered S14000021 to S14000026.
+
+Use PARTITION BY constituency to show the ranking of each party in Edinburgh in 2017. Order your results so the winners are shown first, then ordered by constituency.
+
+```sql
+SELECT constituency,party, votes,  
+      RANK() OVER (PARTITION BY constituency ORDER BY votes DESC) as posn
+  FROM ge
+ WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
+AND yr  = 2017
+ORDER BY posn, constituency
+```
+
+5. You can use SELECT within SELECT to pick out only the winners in Edinburgh.
+
+Show the parties that won for each Edinburgh constituency in 2017.
+
+```sql
+SELECT  constituency,party from 
+(SELECT constituency,party, votes , 
+rank() OVER (PARTITION BY constituency order by votes desc) rn
+  FROM ge
+ WHERE constituency BETWEEN 'S14000021' AND 'S14000026'
+   AND yr = 2017
+ORDER BY constituency,votes DESC) 
+TAB WHERE rn = 1 
+```
+6. You can use COUNT and GROUP BY to see how each party did in Scotland. Scottish constituencies start with 'S'
+
+Show how many seats for each party in Scotland in 2017.
+
+```sql
+SELECT party, COUNT(1) 
+FROM (SELECT constituency,party FROM (SELECT constituency,party, votes,RANK() OVER (PARTITION BY constituency ORDER BY votes DESC) AS r
+  FROM ge
+ WHERE constituency LIKE 'S%'
+   AND yr  = 2017
+ORDER BY r , constituency
+) x
+WHERE x.r=1) y
+GROUP BY party
+```
+
